@@ -58,6 +58,7 @@ namespace WindowsFormsApp1
         public bool isMaximize;
         public string[] StSigns;
         public int variableCount;
+        public bool isURS;
         #endregion
 
         #region Constructors
@@ -72,36 +73,37 @@ namespace WindowsFormsApp1
             this.program = programTable;
         }
 
-        public PrimalSimplex(decimal[][] program, string[] restrictions, string[] stSigns, bool maximize, int VariableCount)
+        public PrimalSimplex(decimal[][] program, string[] restrictions, string[] stSigns, bool maximize, int VariableCount, bool URS)
         {
             this.variableCount = VariableCount;
             this.restrictions = restrictions;
             this.program = program;
             this.isMaximize = maximize;
             this.StSigns = stSigns;
+            this.isURS = URS;
         }
 
 
         #endregion
 
         #region Read Text File To Table
-        public PrimalSimplex readProgramFromFile(string filePath)
+        public PrimalSimplex readProgramFromRTB(string text)
         {
-
             //create the initial program exactly like in Text file
             bool maximize = true;
             int decVarsCount = 0;
-            // Count the number of lines in the file
-            int lineCount = File.ReadLines(filePath).Count();
+            // Split the text into lines
+            string[] lines = text.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+            int lineCount = lines.Length;
             string[] signs = new string[lineCount - 2];
             //just initialise. code monkey
             string[] restrictionRow = new string[1];
             // Initialize the decimal array with the line count
             decimal[][] newProgram = new decimal[lineCount - 1][];
 
-            // Read the file line by line and populate the array
+            // Read the text line by line and populate the array
             int rowIndex = 0;
-            foreach (string line in File.ReadLines(filePath))
+            foreach (string line in lines)
             {
                 // Use Regex to split each line by any whitespace sequence
                 string[] substrings = Regex.Split(line, @"\s+");
@@ -113,33 +115,26 @@ namespace WindowsFormsApp1
                     {
                         case "max":
                             maximize = true;
-
                             break;
-
                         case "min":
-
                             maximize = false;
                             break;
-
                     }
                     //remove the min or max from array
                     substrings = substrings.Skip(1).ToArray();
-                    //count the amount of variables at this pint to exluse rhs
+                    //count the amount of variables at this point to exclude rhs
                     decVarsCount = substrings.Length;
                     //add rhs to the array as 0
                     string newElement = "0";
                     // Create a new array with one extra slot
                     string[] newSubstrings = new string[substrings.Length + 1];
-
                     // Copy existing elements
                     for (int i = 0; i < substrings.Length; i++)
                     {
                         newSubstrings[i] = substrings[i];
                     }
-
                     // Add the new element
                     newSubstrings[substrings.Length] = newElement;
-
                     // Replace the old array with the new array
                     substrings = newSubstrings;
                 }
@@ -153,14 +148,12 @@ namespace WindowsFormsApp1
                 {
                     // Initialize the column count for this row
                     newProgram[rowIndex] = new decimal[substrings.Length];
-
                     //read, save and remove signs from the array if not first row and not last row
                     if (rowIndex != 0 && rowIndex != substrings.Length - 1)
                     {
                         string lastCol = substrings[substrings.Length - 1];
                         Regex regex = new Regex(@"(<=|>=|=)(\d+)");
                         Match match = regex.Match(lastCol);
-
                         if (match.Success)
                         {
                             signs[rowIndex - 1] = match.Groups[1].Value;
@@ -171,8 +164,6 @@ namespace WindowsFormsApp1
                             throw new FormatException("Input did not match the expected format. Expected format: <=, >=, or = for sign restrictions");
                         }
                     }
-
-
                     // Convert substrings to decimals and populate the array for constraint rows
                     for (int i = 0; i < substrings.Length; i++)
                     {
@@ -187,15 +178,23 @@ namespace WindowsFormsApp1
                         }
                     }
                 }
-
-
                 rowIndex++;
             }
-
+            // Test if URS or not
+            bool URS = true;
+            for (int i = 0; i < newProgram[0].Length; i++)
+            {
+                if (newProgram[newProgram.Length - 1][i].ToString().ToLower() != "urs")
+                {
+                    URS = false;
+                    break;
+                }
+            }
             //Transfer to Program with sign restrictions
-            PrimalSimplex init = new PrimalSimplex(newProgram, restrictionRow, signs, maximize, decVarsCount);
+            PrimalSimplex init = new PrimalSimplex(newProgram, restrictionRow, signs, maximize, decVarsCount, URS);
             return init;
         }
+
         #endregion
 
         #region Basic Pivot
@@ -341,8 +340,8 @@ namespace WindowsFormsApp1
         #endregion
 
         #region Get Primal Simplex Optimal State
-        //return 1 optimal , 2 not optimal , 3 failed
-        public int GetPrimalSimplexOptimalState(PrimalSimplex lp)
+        //return 1 optimal , 2 not optimal , 3 Optimal needs advanced operations
+        public int GetPrimalSimplexOptimalStateBasic(PrimalSimplex lp)
         {
             for (int i = 0; i < lp.variableCount; i++)
             {
@@ -351,6 +350,85 @@ namespace WindowsFormsApp1
                     return 2;
                 }
 
+            }
+
+            return 1;
+        }
+        #endregion
+
+        #region Get Primal Simplex State Non URS
+        public int GetPrimalSimplexStateNonURS(PrimalSimplex lp)
+        {
+            // set truncate int sensitivity
+            int decimalPlacesSensitivity = 5;
+
+            //test for basic variables
+            int[] Basics =  new int[lp.variableCount];
+            for (int i = 0; i < variableCount; i++)
+            {
+                bool foundOne = false;
+                bool isBasic = true; // Assume column is basic initially
+                for (int j = 0; j < lp.program.Length; j++)
+                {
+                    if (lp.program[j][i] == 1)
+                    {
+                        if (foundOne)
+                        {
+                            isBasic = false; // More than one '1' found
+                        }
+                        else
+                        {
+                            foundOne = true;
+                        }
+                    }
+                    else if (lp.program[j][i] != 0)
+                    {
+                        isBasic = false; // Non-zero and non-one value found
+                    }
+                }
+
+                // After checking all elements in the column
+                if (!foundOne)
+                {
+                    isBasic = false; // No '1' found
+                }
+
+                // Save the result to the Basics array
+                Basics[i] = isBasic ? 1 : 0;
+            }
+            bool containsInteger = false;
+            //Test Basics against INT
+            foreach (string rest in restrictions)
+            {
+                if(rest.ToLower() == "int")
+                {
+                    containsInteger = true;
+                    break;
+                }
+            }
+            // if integer constraint exists, test if basics are integer
+            if (containsInteger)
+            {
+                int colPos = -1; // will start at 0 , basics already var count
+                foreach (int var in Basics)
+                {
+                    colPos++;
+                    //if basic, test if integer. if not integer return non optimal
+                    if (var ==1)
+                    {
+                        //find basic row position again 
+                        for (int i = 0; i < program.Length; i++)
+                        {
+                            if (program[i][colPos] == 1)
+                            {
+                                if (program[i][colPos] != program[i][program[0].Length-1])
+                                {
+                                    return 0;
+                                }
+                            }
+                        }
+                    }
+                }
             }
 
             return 1;
@@ -423,19 +501,32 @@ namespace WindowsFormsApp1
 
         #endregion
 
-        #region Print LP to Consol
-        public void PrintProgram()
+        #region Print LP to RTB
+        public string PrintProgram()
         {
+            string programToText = "";
             for (int i = 0; i < program.Length; i++)
             {
                 for (int j = 0; j < program[i].Length; j++)
                 {
-                    Console.Write($"{program[i][j]:0.00}\t");
+                   programToText += ($"{program[i][j]:0.00}\t");
                 }
-                Console.WriteLine();
+                programToText += "\n";
             }
-            Console.WriteLine();
+            programToText += "\n";
+            return programToText;
         }
+        #endregion
+
+        #region Private Methods
+
+        private bool IsIntegerAfterTruncate(decimal number, int decimalPlaces)
+        {
+            decimal factor = (decimal)Math.Pow(10, decimalPlaces);
+            decimal truncatedValue = Math.Truncate(number * factor) / factor;
+            return truncatedValue == number;
+        }
+
         #endregion
 
     }
