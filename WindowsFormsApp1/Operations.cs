@@ -8,7 +8,7 @@ namespace WindowsFormsApp1
 {
     internal class Operations
     {
-        //overload this to pivot your table
+        //overload this to pivot your table or use decimal[][]
         #region Basic Pivot
         public decimal[][] Pivot(int pivotRow, int pivotColumn, decimal[][] program)
         {

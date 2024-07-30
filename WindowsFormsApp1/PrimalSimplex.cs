@@ -149,7 +149,7 @@ namespace WindowsFormsApp1
                     // Initialize the column count for this row
                     newProgram[rowIndex] = new decimal[substrings.Length];
                     //read, save and remove signs from the array if not first row and not last row
-                    if (rowIndex != 0 && rowIndex != substrings.Length - 1)
+                    if (rowIndex != 0 && rowIndex != lineCount- 1)
                     {
                         string lastCol = substrings[substrings.Length - 1];
                         Regex regex = new Regex(@"(<=|>=|=)(\d+)");
