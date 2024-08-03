@@ -43,6 +43,10 @@ namespace WindowsFormsApp1
                 simplex.program = ops.Pivot(pivots[0], pivots[1], simplex.program);
                 rtbOperations.Text += simplex.PrintProgram();
             }while (simplex.GetPrimalSimplexOptimalStateBasic(simplex) != 1);
+            //check if optimal with int and bin 
+            int nonURSState = simplex.GetPrimalSimplexStateNonURSINT(simplex);
+             //if nonURSINT is false do branch and bound
+             //if binary , fucked
 
         }
     }

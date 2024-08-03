@@ -357,8 +357,11 @@ namespace WindowsFormsApp1
         #endregion
 
         #region Get Primal Simplex State Non URS
-        public int GetPrimalSimplexStateNonURS(PrimalSimplex lp)
+        public int GetPrimalSimplexStateNonURSINT(PrimalSimplex lp)
         {
+
+            //check ints
+            // check bin 
             // set truncate int sensitivity
             int decimalPlacesSensitivity = 5;
 
@@ -421,7 +424,8 @@ namespace WindowsFormsApp1
                         {
                             if (program[i][colPos] == 1)
                             {
-                                if (program[i][colPos] != program[i][program[0].Length-1])
+                                bool willRun = IsIntegerAfterTruncate((program[i][program[0].Length - 1]), decimalPlacesSensitivity);
+                                if (!IsIntegerAfterTruncate( (program[i][program[0].Length-1]), decimalPlacesSensitivity))
                                 {
                                     return 0;
                                 }
@@ -430,7 +434,7 @@ namespace WindowsFormsApp1
                     }
                 }
             }
-
+     
             return 1;
         }
         #endregion
@@ -524,6 +528,7 @@ namespace WindowsFormsApp1
         {
             decimal factor = (decimal)Math.Pow(10, decimalPlaces);
             decimal truncatedValue = Math.Truncate(number * factor) / factor;
+            bool returnValue = truncatedValue == number;
             return truncatedValue == number;
         }
 
