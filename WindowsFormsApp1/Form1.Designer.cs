@@ -31,10 +31,10 @@
             this.rtbOperations = new System.Windows.Forms.RichTextBox();
             this.rtbInitialProgram = new System.Windows.Forms.RichTextBox();
             this.grpMain = new System.Windows.Forms.GroupBox();
+            this.btnSolve = new System.Windows.Forms.Button();
             this.lblAlgorithmSelect = new System.Windows.Forms.Label();
             this.cmbAlgorithmSelect = new System.Windows.Forms.ComboBox();
             this.btnSelectTextFile = new System.Windows.Forms.Button();
-            this.btnSolve = new System.Windows.Forms.Button();
             this.grpMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,6 +53,7 @@
             this.rtbInitialProgram.Size = new System.Drawing.Size(411, 137);
             this.rtbInitialProgram.TabIndex = 1;
             this.rtbInitialProgram.Text = "";
+            this.rtbInitialProgram.TextChanged += new System.EventHandler(this.rtbInitialProgram_TextChanged);
             // 
             // grpMain
             // 
@@ -65,6 +66,16 @@
             this.grpMain.TabIndex = 2;
             this.grpMain.TabStop = false;
             this.grpMain.Text = "Program Settings";
+            // 
+            // btnSolve
+            // 
+            this.btnSolve.Location = new System.Drawing.Point(330, 67);
+            this.btnSolve.Name = "btnSolve";
+            this.btnSolve.Size = new System.Drawing.Size(75, 23);
+            this.btnSolve.TabIndex = 2;
+            this.btnSolve.Text = "Solve";
+            this.btnSolve.UseVisualStyleBackColor = true;
+            this.btnSolve.Click += new System.EventHandler(this.btnSolve_Click);
             // 
             // lblAlgorithmSelect
             // 
@@ -94,16 +105,7 @@
             this.btnSelectTextFile.TabIndex = 3;
             this.btnSelectTextFile.Text = "Read Program";
             this.btnSelectTextFile.UseVisualStyleBackColor = true;
-            // 
-            // btnSolve
-            // 
-            this.btnSolve.Location = new System.Drawing.Point(330, 67);
-            this.btnSolve.Name = "btnSolve";
-            this.btnSolve.Size = new System.Drawing.Size(75, 23);
-            this.btnSolve.TabIndex = 2;
-            this.btnSolve.Text = "Solve";
-            this.btnSolve.UseVisualStyleBackColor = true;
-            this.btnSolve.Click += new System.EventHandler(this.btnSolve_Click);
+            this.btnSelectTextFile.Click += new System.EventHandler(this.btnSelectTextFile_Click);
             // 
             // Form1
             // 

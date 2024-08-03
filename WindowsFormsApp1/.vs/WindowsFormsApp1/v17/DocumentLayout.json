@@ -3,8 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\jandr\\OneDrive - belgiumcampus.ac.za\\Belgium\\LPR 381\\Project\\LPR-381-Project\\WindowsFormsApp1\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{F2801C7F-DE34-4014-8A7B-CE4D9D6FAA4C}|WindowsFormsApp1.csproj|c:\\users\\jandr\\onedrive - belgiumcampus.ac.za\\belgium\\lpr 381\\project\\lpr-381-project\\windowsformsapp1\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2801C7F-DE34-4014-8A7B-CE4D9D6FAA4C}|WindowsFormsApp1.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F2801C7F-DE34-4014-8A7B-CE4D9D6FAA4C}|WindowsFormsApp1.csproj|c:\\users\\jandr\\onedrive - belgiumcampus.ac.za\\belgium\\lpr 381\\project\\lpr-381-project\\windowsformsapp1\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{F2801C7F-DE34-4014-8A7B-CE4D9D6FAA4C}|WindowsFormsApp1.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2801C7F-DE34-4014-8A7B-CE4D9D6FAA4C}|WindowsFormsApp1.csproj|c:\\users\\jandr\\onedrive - belgiumcampus.ac.za\\belgium\\lpr 381\\project\\lpr-381-project\\windowsformsapp1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2801C7F-DE34-4014-8A7B-CE4D9D6FAA4C}|WindowsFormsApp1.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2801C7F-DE34-4014-8A7B-CE4D9D6FAA4C}|WindowsFormsApp1.csproj|c:\\users\\jandr\\onedrive - belgiumcampus.ac.za\\belgium\\lpr 381\\project\\lpr-381-project\\windowsformsapp1\\loaddatafromtextfile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2801C7F-DE34-4014-8A7B-CE4D9D6FAA4C}|WindowsFormsApp1.csproj|solutionrelative:loaddatafromtextfile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2801C7F-DE34-4014-8A7B-CE4D9D6FAA4C}|WindowsFormsApp1.csproj|c:\\users\\jandr\\onedrive - belgiumcampus.ac.za\\belgium\\lpr 381\\project\\lpr-381-project\\windowsformsapp1\\operations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2801C7F-DE34-4014-8A7B-CE4D9D6FAA4C}|WindowsFormsApp1.csproj|solutionrelative:operations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2801C7F-DE34-4014-8A7B-CE4D9D6FAA4C}|WindowsFormsApp1.csproj|c:\\users\\jandr\\onedrive - belgiumcampus.ac.za\\belgium\\lpr 381\\project\\lpr-381-project\\windowsformsapp1\\primalsimplex.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2801C7F-DE34-4014-8A7B-CE4D9D6FAA4C}|WindowsFormsApp1.csproj|solutionrelative:primalsimplex.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 357,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -22,7 +42,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Form1.cs [Design]",
               "DocumentMoniker": "C:\\Users\\jandr\\OneDrive - belgiumcampus.ac.za\\Belgium\\LPR 381\\Project\\LPR-381-Project\\WindowsFormsApp1\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
@@ -31,6 +51,71 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-27T08:09:13.675Z",
               "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\jandr\\OneDrive - belgiumcampus.ac.za\\Belgium\\LPR 381\\Project\\LPR-381-Project\\WindowsFormsApp1\\Form1.cs",
+              "RelativeDocumentMoniker": "Form1.cs",
+              "ToolTip": "C:\\Users\\jandr\\OneDrive - belgiumcampus.ac.za\\Belgium\\LPR 381\\Project\\LPR-381-Project\\WindowsFormsApp1\\Form1.cs",
+              "RelativeToolTip": "Form1.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAHkAAAA0AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-03T07:45:00.963Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\jandr\\OneDrive - belgiumcampus.ac.za\\Belgium\\LPR 381\\Project\\LPR-381-Project\\WindowsFormsApp1\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\jandr\\OneDrive - belgiumcampus.ac.za\\Belgium\\LPR 381\\Project\\LPR-381-Project\\WindowsFormsApp1\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-03T07:43:15.057Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "LoadDataFromTextFile.cs",
+              "DocumentMoniker": "C:\\Users\\jandr\\OneDrive - belgiumcampus.ac.za\\Belgium\\LPR 381\\Project\\LPR-381-Project\\WindowsFormsApp1\\LoadDataFromTextFile.cs",
+              "RelativeDocumentMoniker": "LoadDataFromTextFile.cs",
+              "ToolTip": "C:\\Users\\jandr\\OneDrive - belgiumcampus.ac.za\\Belgium\\LPR 381\\Project\\LPR-381-Project\\WindowsFormsApp1\\LoadDataFromTextFile.cs",
+              "RelativeToolTip": "LoadDataFromTextFile.cs",
+              "ViewState": "AQIAAAEAAAAAAAAAAAAqwA0AAAAGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-03T07:57:48.913Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PrimalSimplex.cs",
+              "DocumentMoniker": "C:\\Users\\jandr\\OneDrive - belgiumcampus.ac.za\\Belgium\\LPR 381\\Project\\LPR-381-Project\\WindowsFormsApp1\\PrimalSimplex.cs",
+              "RelativeDocumentMoniker": "PrimalSimplex.cs",
+              "ToolTip": "C:\\Users\\jandr\\OneDrive - belgiumcampus.ac.za\\Belgium\\LPR 381\\Project\\LPR-381-Project\\WindowsFormsApp1\\PrimalSimplex.cs",
+              "RelativeToolTip": "PrimalSimplex.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABECAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-03T07:40:28.979Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Operations.cs",
+              "DocumentMoniker": "C:\\Users\\jandr\\OneDrive - belgiumcampus.ac.za\\Belgium\\LPR 381\\Project\\LPR-381-Project\\WindowsFormsApp1\\Operations.cs",
+              "RelativeDocumentMoniker": "Operations.cs",
+              "ToolTip": "C:\\Users\\jandr\\OneDrive - belgiumcampus.ac.za\\Belgium\\LPR 381\\Project\\LPR-381-Project\\WindowsFormsApp1\\Operations.cs",
+              "RelativeToolTip": "Operations.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-03T07:43:26.457Z",
+              "EditorCaption": ""
             }
           ]
         }
