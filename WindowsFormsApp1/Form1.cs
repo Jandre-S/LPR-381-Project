@@ -82,9 +82,19 @@ namespace WindowsFormsApp1
         {
             switch (cmbAlgorithmSelect.SelectedIndex) 
             {
-            case 0:
+                case 0:
                     SolvePrimalSimplexBasic();
                     break;
+                case 1: 
+                    SolvePrimalSimplexBasic();
+                    break;
+                case 2:
+                    SolveBranchAndBoundSimplex();
+                    break;
+                default:
+                    Console.WriteLine("No Algorythim selected");
+                    break;
+
             }
         }
 
@@ -105,6 +115,26 @@ namespace WindowsFormsApp1
                 rtbOperations.Text += simplex.PrintProgram();
             }while (simplex.GetPrimalSimplexOptimalStateBasic(simplex) != 1);
 
+        }
+        private void SolveBranchAndBoundSimplex()
+        {
+            rtbOperations.Clear();
+            BnBSimplex bnbSimplex = new BnBSimplex();
+            decimal[][] solution = bnbSimplex.Solve(); // Remove the argument here
+
+            if (solution != null)
+            {
+                rtbOperations.Text += "Optimal Integer Solution:\n";
+                rtbOperations.Text += $"Objective Value: {solution[0][solution[0].Length - 1]}\n";
+                for (int i = 0; i < solution[0].Length - 1; i++)
+                {
+                    rtbOperations.Text += $"x{i + 1} = {solution[1][i]}\n";
+                }
+            }
+            else
+            {
+                rtbOperations.Text += "No feasible integer solution found.";
+            }
         }
 
         private void btnSelectTextFile_Click(object sender, EventArgs e)
