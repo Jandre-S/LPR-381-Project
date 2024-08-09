@@ -74,16 +74,19 @@ namespace WindowsFormsApp1
             catch (Exception ex)
             {
                 MessageBox.Show($"Error: {ex.Message}");
-            }
+           
+ }
 
         }
-
         private void btnSolve_Click(object sender, EventArgs e)
         {
             switch (cmbAlgorithmSelect.SelectedIndex) 
             {
             case 0:
                     SolvePrimalSimplexBasic();
+                    break;
+                case 1:
+                    SolveBranchAndBoundKnapsack();
                     break;
             }
         }
@@ -127,6 +130,14 @@ namespace WindowsFormsApp1
         private void rtbInitialProgram_TextChanged(object sender, EventArgs e)
         {
 
+     
         }
+        private void SolveBranchAndBoundKnapsack()
+{
+    Knapsack knapsack = new Knapsack();
+    knapsack = knapsack.readProgramFromRTB(rtbInitialProgram.Text);
+    knapsack.Solve();
+    rtbOperations.Text = knapsack.PrintProgram();
+}
     }
 }
