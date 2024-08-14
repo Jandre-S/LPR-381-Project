@@ -8,3 +8,14 @@ C:\Users\jandr\source\repos\LPR 381 Project\obj\Debug\LPR 381 Project.csproj.Gen
 C:\Users\jandr\source\repos\LPR 381 Project\obj\Debug\LPR 381 Project.csproj.CoreCompileInputs.cache
 C:\Users\jandr\source\repos\LPR 381 Project\obj\Debug\LPR 381 Project.exe
 C:\Users\jandr\source\repos\LPR 381 Project\obj\Debug\LPR 381 Project.pdb
+C:\Users\Llewelyn\Source\Repos\LPR-381-Project2\LPR 381 Project\bin\Debug\LPR 381 Project.exe.config
+C:\Users\Llewelyn\Source\Repos\LPR-381-Project2\LPR 381 Project\bin\Debug\LPR 381 Project.exe
+C:\Users\Llewelyn\Source\Repos\LPR-381-Project2\LPR 381 Project\bin\Debug\LPR 381 Project.pdb
+C:\Users\Llewelyn\Source\Repos\LPR-381-Project2\LPR 381 Project\obj\Debug\LPR 381 Project.csproj.AssemblyReference.cache
+C:\Users\Llewelyn\Source\Repos\LPR-381-Project2\LPR 381 Project\obj\Debug\LPR 381 Project.csproj.SuggestedBindingRedirects.cache
+C:\Users\Llewelyn\Source\Repos\LPR-381-Project2\LPR 381 Project\obj\Debug\LPR_381_Project.Form1.resources
+C:\Users\Llewelyn\Source\Repos\LPR-381-Project2\LPR 381 Project\obj\Debug\LPR_381_Project.Properties.Resources.resources
+C:\Users\Llewelyn\Source\Repos\LPR-381-Project2\LPR 381 Project\obj\Debug\LPR 381 Project.csproj.GenerateResource.cache
+C:\Users\Llewelyn\Source\Repos\LPR-381-Project2\LPR 381 Project\obj\Debug\LPR 381 Project.csproj.CoreCompileInputs.cache
+C:\Users\Llewelyn\Source\Repos\LPR-381-Project2\LPR 381 Project\obj\Debug\LPR 381 Project.exe
+C:\Users\Llewelyn\Source\Repos\LPR-381-Project2\LPR 381 Project\obj\Debug\LPR 381 Project.pdb

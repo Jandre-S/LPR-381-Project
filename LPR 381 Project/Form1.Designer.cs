@@ -84,6 +84,10 @@
             // 
             // toolStripComboBox_SolveAlgorithms
             // 
+            this.toolStripComboBox_SolveAlgorithms.AutoCompleteCustomSource.AddRange(new string[] {
+            "Primal Simplex"});
+            this.toolStripComboBox_SolveAlgorithms.Items.AddRange(new object[] {
+            "Primal Simplex"});
             this.toolStripComboBox_SolveAlgorithms.Name = "toolStripComboBox_SolveAlgorithms";
             this.toolStripComboBox_SolveAlgorithms.Size = new System.Drawing.Size(121, 25);
             // 

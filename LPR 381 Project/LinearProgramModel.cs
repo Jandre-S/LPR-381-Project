@@ -56,9 +56,18 @@ namespace LPR_381_Project
         public string Relation { get; set; }
         public double RightHandSide { get; set; }
 
+        public Constraint(List<double> coefficients, string relation, double rightHandSide)
+        {
+            Coefficients = coefficients;
+            Relation = relation;
+            RightHandSide = rightHandSide;
+        }
+
         public Constraint()
         {
             Coefficients = new List<double>();
         }
+
+
     }
 }

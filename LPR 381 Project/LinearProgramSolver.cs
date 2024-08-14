@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WindowsFormsApp1;
 
 namespace LPR_381_Project
 {
@@ -61,8 +62,8 @@ namespace LPR_381_Project
 
         private void SolvePrimalSimplex()
         {
-            var primalSimplex = new PrimalSimplexAlgorithm();
-            primalSimplex.Solve(_model);
+            PrimalSimplexAlgorithm primalSimplex = new PrimalSimplexAlgorithm();
+         //   primalSimplex.Solve(_model);
             // Process and display results as needed
         }
 

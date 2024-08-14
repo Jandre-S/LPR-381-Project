@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 
@@ -39,13 +40,18 @@ namespace LPR_381_Project
                 {
                     throw new FormatException($"Constraint format is invalid on line {i + 1}.");
                 }
-
-                var constraint = new Constraint
+                List<double> constrs = new List<double>();
+                   for (int j = 0; j < parts.Length-3; j++)
                 {
-                    Coefficients = new List<double>(Array.ConvertAll(parts.Skip(parts.Length - 1).ToArray(), double.Parse)),
-                    Relation = parts[parts.Length - 2],
-                    RightHandSide = double.Parse(parts[parts.Length - 1])
-                };
+                    constrs.Add(double.Parse(parts[j]));
+                }
+                 string relation = parts[parts.Length-2];
+                double Rhs = double.Parse(parts[parts.Length-1]);
+
+
+
+                Constraint constraint = new Constraint(constrs, relation, Rhs);
+            
                 model.Constraints.Add(constraint);
             }
 

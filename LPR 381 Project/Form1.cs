@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
+using WindowsFormsApp1;
 
 namespace LPR_381_Project
 {
     public partial class Form1 : Form
     {
         private LinearProgramModel _model;
-        private PrimalSimplexAlgorithm _primalSimplex;
+        private PrimalSimplexAlgorithm _primalSimplexAlgorithm;
         private RevisedPrimalSimplexAlgorithm _revisedPrimalSimplex;
         private BranchAndBoundSimplexAlgorithm _branchAndBoundSimplex;
         private BranchAndBoundKnapsackAlgorithm _branchAndBoundKnapsack;
@@ -23,7 +24,7 @@ namespace LPR_381_Project
 
         private void InitializeAlgorithms()
         {
-            _primalSimplex = new PrimalSimplexAlgorithm();
+            _primalSimplexAlgorithm = new PrimalSimplexAlgorithm();
             _revisedPrimalSimplex = new RevisedPrimalSimplexAlgorithm();
             _branchAndBoundSimplex = new BranchAndBoundSimplexAlgorithm();
 
@@ -82,11 +83,37 @@ namespace LPR_381_Project
                     MessageBox.Show("Please select an algorithm.");
                     return;
                 }
-
+                // 
+                //
+                //
+                // THIS WORKS
+                //
+                //
+                //
                 switch (selectedAlgorithm)
                 {
                     case "Primal Simplex":
-                        _primalSimplex.Solve(_model);
+                        PrimalSimplexAlgorithm algo = new PrimalSimplexAlgorithm();
+                      algo =   algo.ConvertToPrimal(_model);
+                        richTextBox_Solved.Text += algo.PrintProgram();
+                       algo = algo.GetPrimalSimplexCanonical(algo);
+                        richTextBox_Solved.Text += algo.PrintProgram();
+                        do
+                        {
+                            int[] pivots = algo.GetPivotRowAndColumnPrimalSimplex(algo);
+                            algo.Pivot(pivots[0], pivots[1],algo);
+                            richTextBox_Solved.Text += algo.PrintProgram();
+                        } while (algo.GetPrimalSimplexOptimalStateBasic(algo) == 0);
+                  //
+                  //
+                  //
+                  //THIS WORKS
+                  //
+                  //
+                  //
+                  //
+
+
                         break;
                     case "Revised Primal Simplex":
                         _revisedPrimalSimplex.Solve(_model);
@@ -132,7 +159,7 @@ namespace LPR_381_Project
             sb.AppendLine(string.Join(" ", _model.ObjectiveCoefficients));
 
             // Constraints
-            sb.AppendLine("Constraints:");
+            sb.AppendLine("Constraints");
             foreach (var constraint in _model.Constraints)
             {
                 sb.Append("Coefficients: ");
