@@ -118,8 +118,40 @@ namespace LPR_381_Project
                     case "Revised Primal Simplex":
                         _revisedPrimalSimplex.Solve(_model);
                         break;
-                    case "Branch and Bound Simplex":
-                        _branchAndBoundSimplex.Solve(_model);
+                   case "Branch and Bound Simplex":
+                        if (_model != null)
+                        {
+                            double[] objectiveCoefficients = _model.ObjectiveCoefficients.ToArray();
+                            double[,] constraintCoefficients = ConvertConstraintsToArray(_model.Constraints);
+                            double[] constraintRightHandSides = _model.Constraints.Select(c => c.RightHandSide).ToArray();
+                            string[] constraintTypes = _model.Constraints.Select(c => c.Relation).ToArray();
+                            string[] variableTypes = _model.SignRestrictions.ToArray();
+
+                            _branchAndBoundSimplex = new BranchAndBoundSimplexAlgorithm(
+                                objectiveCoefficients,
+                                constraintCoefficients,
+                                constraintRightHandSides,
+                                constraintTypes,
+                                variableTypes,
+                                _model.IsMaximization
+                            );
+
+                            var (solution, processOutput) = _branchAndBoundSimplex.Solve();
+
+                            richTextBox_Solved.Text = processOutput;
+                            if (solution != null)
+                            {
+                                richTextBox_Solved.AppendText("\nFinal Solution:\n");
+                                for (int i = 0; i < solution.Length; i++)
+                                {
+                                    richTextBox_Solved.AppendText($"x{i + 1} = {solution[i]:F4}\n");
+                                }
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Please load a model first.");
+                        }
                         break;
                     case "Branch and Bound Knapsack":
                         _branchAndBoundKnapsack.Solve();
@@ -173,6 +205,23 @@ namespace LPR_381_Project
             sb.AppendLine(string.Join(" ", _model.SignRestrictions));
 
             richTextBox_LoadFormFile.Text = sb.ToString();
+        }
+
+        private double[,] ConvertConstraintsToArray(List<Constraint> constraints)
+        {
+            int rows = constraints.Count;
+            int cols = constraints[0].Coefficients.Count;
+            double[,] result = new double[rows, cols];
+
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
+                    result[i, j] = constraints[i].Coefficients[j];
+                }
+            }
+
+            return result;
         }
     }
 }
