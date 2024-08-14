@@ -118,6 +118,11 @@ namespace LPR_381_Project
                     case "Revised Primal Simplex":
                         _revisedPrimalSimplex.Solve(_model);
                         break;
+                   
+                    ////////////////////////////////////////////////////////////////////////
+                    // DONT TOUCH
+                    ////////////////////////////////////////////////////////////////////////
+                    
                    case "Branch and Bound Simplex":
                         if (_model != null)
                         {
@@ -153,6 +158,9 @@ namespace LPR_381_Project
                             MessageBox.Show("Please load a model first.");
                         }
                         break;
+                    ///////////////////////////////////////////////////////////////////////////////////////////////////////
+                    //DONT TOUCH
+                    //////////////////////////////////////////////////////////////////////////////////////////////////////
                     case "Branch and Bound Knapsack":
                         _branchAndBoundKnapsack.Solve();
                         break;
