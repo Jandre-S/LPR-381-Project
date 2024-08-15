@@ -61,12 +61,6 @@ namespace LPR_381_Project
             results.AppendLine(GoldenSectionSearch(f1D, -10, 10));
             results.AppendLine("\n\n");
 
-            // One-dimensional slice of Rosenbrock function: f(x) = (1-x)^2 + 100(1-x^2)^2
-            ObjectiveFunction rosenbrock1D = x => Math.Pow(1 - x[0], 2) + 100 * Math.Pow(1 - x[0] * x[0], 2);
-            results.AppendLine("Minimizing 1D slice of Rosenbrock function f(x) = (1-x)^2 + 100(1-x^2)^2:");
-            results.AppendLine(GoldenSectionSearch(rosenbrock1D, -2, 2));
-            results.AppendLine("\n\n");
-
             // One-dimensional quadratic function: f(x) = (x-3)^2
             ObjectiveFunction quadratic1D = x => Math.Pow(x[0] - 3, 2);
             results.AppendLine("Minimizing f(x) = (x-3)^2:");
