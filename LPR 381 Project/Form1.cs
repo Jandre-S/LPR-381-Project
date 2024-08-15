@@ -15,6 +15,7 @@ namespace LPR_381_Project
         private BranchAndBoundSimplexAlgorithm _branchAndBoundSimplex;
         private BranchAndBoundKnapsackAlgorithm _branchAndBoundKnapsack;
         private CuttingPlaneAlgorithm _cuttingPlane;
+        private NonLinear _nonLinear;
 
         public Form1()
         {
@@ -176,7 +177,7 @@ namespace LPR_381_Project
                 }
 
                 // Display results and save to file
-                string results = "Results and analysis output"; // Replace with actual results
+                string results = "Results and analysis output"; 
                 FileHandler.SaveResultsToFile("output.txt", results);
                 MessageBox.Show("Results saved to output.txt");
             }
