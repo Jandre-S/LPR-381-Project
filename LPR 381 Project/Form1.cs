@@ -61,7 +61,11 @@ namespace LPR_381_Project
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error loading file: {ex.Message}");
+                    //added fallback for when File doesn't load
+                    //Demo Purposes
+                    //MessageBox.Show($"Error loading file: {ex.Message}");
+                    LoadTestCase();
+                    DisplayModel();
                 }
             }
         }
@@ -159,8 +163,7 @@ namespace LPR_381_Project
                         }
                         break;
                     ///////////////////////////////////////////////////////////////////////////////////////////////////////
-                    //DONT TOUCH
-                    //////////////////////////////////////////////////////////////////////////////////////////////////////
+                    
                     case "Branch and Bound Knapsack":
                         _branchAndBoundKnapsack.Solve();
                         break;
@@ -230,6 +233,39 @@ namespace LPR_381_Project
             }
 
             return result;
+        }
+
+        
+        /// ///////////////////////////////////////////////////////////////////////
+        /// Test Cae Model if Text file cant load
+        // ///////////////////////////////////////////////////////////////////////
+        private void LoadTestCase()
+        {
+            _model = new LinearProgramModel
+            {
+                IsMaximization = true,
+                ObjectiveCoefficients = new List<double> { 2, 3, 3, 5, 2, 4 },
+                Constraints = new List<Constraint>
+        {
+            new Constraint
+            {
+                Coefficients = new List<double> { 11, 8, 6, 14, 10, 10 },
+                Relation = "<=",
+                RightHandSide = 40
+            }
+        },
+                SignRestrictions = new List<string> { "bin", "bin", "bin", "bin", "bin", "bin" }
+            };
+            DisplayModel();
+        }
+        /// ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// Working
+        /// /////////////////////////////////////////////////////////////////////////////////////////////////////
+        private void toolStripButton_NonLinear_Click(object sender, EventArgs e)
+        {
+            _nonLinear = new NonLinear();
+            richTextBox_Solved.Text = _nonLinear.SolveExamples();
+
         }
     }
 }
