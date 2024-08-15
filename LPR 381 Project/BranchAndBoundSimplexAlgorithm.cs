@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace WindowsFormsApp1
+namespace LPR_381_Project
 {
     // The BranchAndBoundSimplex class implements the Branch and Bound algorithm 
     // combined with the Simplex method to solve linear programming problems with integer constraints.

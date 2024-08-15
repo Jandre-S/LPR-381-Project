@@ -76,8 +76,8 @@ namespace LPR_381_Project
 
         private void SolveBranchAndBoundSimplex()
         {
-            var branchAndBoundSimplex = new BranchAndBoundSimplexAlgorithm();
-            branchAndBoundSimplex.Solve(_model);
+            //var branchAndBoundSimplex = new BranchAndBoundSimplexAlgorithm();
+            //branchAndBoundSimplex.Solve(_model);
             // Process and display results as needed
         }
 
@@ -100,8 +100,9 @@ namespace LPR_381_Project
 
         private void SolveCuttingPlane()
         {
-            var cuttingPlane = new CuttingPlaneAlgorithm(_model);
-            cuttingPlane.Solve();
+            var simplexSolver = new SimplexSolver(); // Ensure this is initialized properly
+            //var cuttingPlane = new CuttingPlaneAlgorithm(_model, simplexSolver, richTextBox_Solved);
+            //cuttingPlane.Solve();
             // Process and display results as needed
         }
 

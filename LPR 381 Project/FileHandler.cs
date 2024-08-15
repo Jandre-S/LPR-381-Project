@@ -41,7 +41,7 @@ namespace LPR_381_Project
                     throw new FormatException($"Constraint format is invalid on line {i + 1}.");
                 }
                 List<double> constrs = new List<double>();
-                   for (int j = 0; j < parts.Length-3; j++)
+                   for (int j = 0; j < parts.Length-2; j++)
                 {
                     constrs.Add(double.Parse(parts[j]));
                 }
