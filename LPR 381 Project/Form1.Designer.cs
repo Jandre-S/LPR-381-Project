@@ -88,7 +88,8 @@
             "Primal Simplex"});
             this.toolStripComboBox_SolveAlgorithms.Items.AddRange(new object[] {
             "Primal Simplex",
-            "CuttingPlane"});
+            "CuttingPlane",
+            "Branch and Bound Knapsack"});
             this.toolStripComboBox_SolveAlgorithms.Name = "toolStripComboBox_SolveAlgorithms";
             this.toolStripComboBox_SolveAlgorithms.Size = new System.Drawing.Size(121, 25);
             // 

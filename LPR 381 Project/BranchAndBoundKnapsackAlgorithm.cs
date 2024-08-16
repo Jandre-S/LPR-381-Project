@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace LPR_381_Project
 {
@@ -8,12 +9,14 @@ namespace LPR_381_Project
         public List<KnapsackItem> Items { get; set; }
         public double Capacity { get; set; }
     }
+
     public class KnapsackItem
     {
         public double Value { get; set; }
         public double Weight { get; set; }
         public int Index { get; set; }
     }
+
     public class PriorityQueue<T> where T : IComparable<T>
     {
         private SortedSet<T> set = new SortedSet<T>();
@@ -41,12 +44,14 @@ namespace LPR_381_Project
         private KnapsackModel model;
         private double bestValue;
         private List<int> bestSolution;
+        private List<TableInfo> tables;
 
         public BranchAndBoundKnapsackAlgorithm(KnapsackModel model)
         {
             this.model = model;
             this.bestValue = 0;
             this.bestSolution = new List<int>();
+            this.tables = new List<TableInfo>();
         }
 
         public void Solve()
@@ -61,9 +66,21 @@ namespace LPR_381_Project
 
             priorityQueue.Enqueue(root);
 
+            int tableNumber = 1;
             while (priorityQueue.Count > 0)
             {
                 var node = priorityQueue.Dequeue();
+
+                var tableInfo = new TableInfo
+                {
+                    TableNumber = tableNumber++,
+                    Level = node.Level,
+                    Solution = new List<int>(node.Solution),
+                    UpperBound = node.UpperBound,
+                    CurrentValue = CalculateValue(node.Solution),
+                    CurrentWeight = CalculateWeight(node.Solution)
+                };
+                tables.Add(tableInfo);
 
                 if (node.Level == model.Items.Count - 1)
                 {
@@ -72,8 +89,6 @@ namespace LPR_381_Project
 
                 var nextLevel = node.Level + 1;
                 var item = model.Items[nextLevel];
-                var currentWeight = CalculateWeight(node.Solution);
-                var currentValue = CalculateValue(node.Solution);
 
                 // Include the item
                 var includedSolution = new List<int>(node.Solution) { 1 };
@@ -162,19 +177,28 @@ namespace LPR_381_Project
 
         public double GetBestValue() => bestValue;
         public List<int> GetBestSolution() => bestSolution;
+        public List<TableInfo> GetTables() => tables;
 
-        // Define the Node class inside BranchAndBoundKnapsackAlgorithm
         public class Node : IComparable<Node>
         {
             public int Level { get; set; }
             public List<int> Solution { get; set; }
             public double UpperBound { get; set; }
 
-            // Implement IComparable<Node>
             public int CompareTo(Node other)
             {
-                return other.UpperBound.CompareTo(UpperBound); // Higher upper bound has higher priority
+                return other.UpperBound.CompareTo(UpperBound);
             }
         }
+    }
+
+    public class TableInfo
+    {
+        public int TableNumber { get; set; }
+        public int Level { get; set; }
+        public List<int> Solution { get; set; }
+        public double UpperBound { get; set; }
+        public double CurrentValue { get; set; }
+        public double CurrentWeight { get; set; }
     }
 }

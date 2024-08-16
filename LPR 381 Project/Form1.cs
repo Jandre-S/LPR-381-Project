@@ -114,6 +114,7 @@ namespace LPR_381_Project
                         break;
                     case "Branch and Bound Knapsack":
                         _branchAndBoundKnapsack.Solve();
+                        DisplayKnapsackResults();
                         break;
                     case "CuttingPlane":
                         if (_model == null)
@@ -221,6 +222,44 @@ namespace LPR_381_Project
             //_nonLinear = new NonLinear();
             //richTextBox_Solved.Text = _nonLinear.SolveExamples();
 
+        }
+
+        //Display Knapsack table
+        private void DisplayKnapsackResults()
+        {
+            var tables = _branchAndBoundKnapsack.GetTables();
+            var sb = new StringBuilder();
+
+            foreach (var table in tables)
+            {
+                sb.AppendLine($"## Table {table.TableNumber}");
+                sb.AppendLine($"Level: {table.Level}");
+                sb.AppendLine("| Variable | Value |");
+                sb.AppendLine("|----------|-------|");
+                for (int i = 0; i < _branchAndBoundKnapsack.GetBestSolution().Count; i++)
+                {
+                    string value = i < table.Solution.Count ? table.Solution[i].ToString() : "-";
+                    sb.AppendLine($"| X{i + 1} | {value} |");
+                }
+                sb.AppendLine($"| Current Value | {table.CurrentValue:F2} |");
+                sb.AppendLine($"| Current Weight | {table.CurrentWeight:F2} |");
+                sb.AppendLine();
+            }
+
+            // Display optimal solution
+            var bestSolution = _branchAndBoundKnapsack.GetBestSolution();
+            var bestValue = _branchAndBoundKnapsack.GetBestValue();
+
+            sb.AppendLine("## Optimal Solution");
+            sb.AppendLine("| Variable | Value |");
+            sb.AppendLine("|----------|-------|");
+            for (int i = 0; i < bestSolution.Count; i++)
+            {
+                sb.AppendLine($"| X{i + 1} | {bestSolution[i]} |");
+            }
+            sb.AppendLine($"| Best Value | {bestValue:F2} |");
+
+            richTextBox_Solved.Text = sb.ToString();
         }
     }
 }
