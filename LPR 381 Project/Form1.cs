@@ -29,17 +29,7 @@ namespace LPR_381_Project
             // _branchAndBoundSimplex = new BranchAndBoundSimplexAlgorithm();
 
             // Initialize Knapsack model
-            var knapsackModel = new KnapsackModel
-            {
-                Items = new List<KnapsackItem>
-        {
-            new KnapsackItem { Index = 0, Value = 60, Weight = 10 },
-            new KnapsackItem { Index = 1, Value = 100, Weight = 20 },
-            new KnapsackItem { Index = 2, Value = 120, Weight = 30 }
-        },
-                Capacity = 50
-            };
-            _branchAndBoundKnapsack = new BranchAndBoundKnapsackAlgorithm(knapsackModel);
+            
 
             // Initialize SimplexSolver instance
             //var simplexSolver = new SimplexSolver();
@@ -113,6 +103,30 @@ namespace LPR_381_Project
                         }
                         break;
                     case "Branch and Bound Knapsack":
+                        if (_model == null)
+                        {
+                            MessageBox.Show("Model is not initialized.");
+                            return;
+                        }
+
+                        // Create a KnapsackModel from the current _model
+                        var knapsackModel = new KnapsackModel
+                        {
+                            Items = new List<KnapsackItem>(),
+                            Capacity = _model.Constraints[0].RightHandSide
+                        };
+
+                        for (int i = 0; i < _model.ObjectiveCoefficients.Count; i++)
+                        {
+                            knapsackModel.Items.Add(new KnapsackItem
+                            {
+                                Index = i,
+                                Value = _model.ObjectiveCoefficients[i],
+                                Weight = _model.Constraints[0].Coefficients[i]
+                            });
+                        }
+
+                        _branchAndBoundKnapsack = new BranchAndBoundKnapsackAlgorithm(knapsackModel);
                         _branchAndBoundKnapsack.Solve();
                         DisplayKnapsackResults();
                         break;
